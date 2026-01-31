@@ -1,103 +1,143 @@
-import Image from "next/image";
+import { AnimatedCard } from './components/AnimatedCard';
+import { AnimatedButton } from './components/AnimatedButton';
+import { CounterAnimation } from './components/CounterAnimation';
+import { FloatingElements } from './components/FloatingElements';
+import { LoadingSpinner } from './components/LoadingSpinner';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 relative overflow-hidden">
+      {/* Background animations */}
+      <FloatingElements 
+        count={15} 
+        maxSize={150}
+        colorScheme="mixed"
+      />
+      
+      <div className="container mx-auto px-4 py-16 relative z-10">
+        <header className="mb-12 text-center">
+          <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Animation Demo
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            A collection of reusable animated UI components for Next.js applications
+          </p>
+        </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+        {/* Counter animation section */}
+        <section className="mb-16 py-12">
+          <div className="grid md:grid-cols-3 gap-8 text-center">
+            <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+              <CounterAnimation end={9875} suffix="+" />
+              <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">Happy Customers</p>
+            </div>
+            
+            <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+              <CounterAnimation start={95} end={99.8} decimals={1} suffix="%" />
+              <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">Customer Satisfaction</p>
+            </div>
+            
+            <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+              <CounterAnimation end={150} prefix="$" suffix="M" />
+              <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">Revenue Generated</p>
+            </div>
+          </div>
+        </section>
+        
+        {/* Loading spinners section */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-6 text-center">Loading Spinners</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+            <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+              <LoadingSpinner size="sm" color="blue" thickness="thin" />
+            </div>
+            <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+              <LoadingSpinner size="md" color="purple" thickness="regular" />
+            </div>
+            <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+              <LoadingSpinner size="lg" color="green" thickness="thick" />
+            </div>
+            <div className="p-6 bg-gradient-to-br from-blue-600 to-purple-700 rounded-lg shadow-md">
+              <LoadingSpinner size="md" color="white" thickness="regular" />
+            </div>
+          </div>
+        </section>
+        
+        {/* Animated buttons section */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-6 text-center">Animated Buttons</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+            <div className="flex flex-col gap-4">
+              <h3 className="font-semibold mb-2">Primary Variants</h3>
+              <AnimatedButton size="sm">Small Button</AnimatedButton>
+              <AnimatedButton size="md">Medium Button</AnimatedButton>
+              <AnimatedButton size="lg">Large Button</AnimatedButton>
+            </div>
+            
+            <div className="flex flex-col gap-4">
+              <h3 className="font-semibold mb-2">Secondary Variants</h3>
+              <AnimatedButton variant="secondary" size="sm">Small Button</AnimatedButton>
+              <AnimatedButton variant="secondary" size="md">Medium Button</AnimatedButton>
+              <AnimatedButton variant="secondary" size="lg">Large Button</AnimatedButton>
+            </div>
+            
+            <div className="flex flex-col gap-4">
+              <h3 className="font-semibold mb-2">Outline Variants</h3>
+              <AnimatedButton variant="outline" size="sm">Small Button</AnimatedButton>
+              <AnimatedButton variant="outline" size="md">Medium Button</AnimatedButton>
+              <AnimatedButton variant="outline" size="lg">Large Button</AnimatedButton>
+            </div>
+          </div>
+        </section>
+        
+        {/* Animated cards section */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-6 text-center">Animated Cards</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <AnimatedCard
+              title="Interactive Design"
+              description="Hover and click to see different animations. Cards respond to user interactions with smooth transitions and transforms."
+              colorScheme="blue"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+            <AnimatedCard
+              title="Responsive Layout"
+              description="All components adapt beautifully to different screen sizes and maintain their visual appeal across devices."
+              colorScheme="purple"
+            />
+            <AnimatedCard
+              title="Performance Optimized"
+              description="Animations are carefully crafted to ensure smooth performance using CSS transitions and transforms."
+              colorScheme="green"
+            />
+          </div>
+        </section>
+        
+        {/* Animation showcase */}
+        <section className="relative">
+          <h2 className="text-2xl font-bold mb-6 text-center">Animation Playground</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg relative overflow-hidden h-64">
+            {/* Inner floating elements with different settings */}
+            <div className="absolute inset-0">
+              <FloatingElements 
+                count={10} 
+                maxSize={40}
+                minSize={10}
+                colorScheme="blue"
+              />
+            </div>
+            
+            <div className="relative z-10 flex items-center justify-center h-full">
+              <div className="text-center">
+                <h3 className="text-xl font-bold mb-4">Interactive Animation Demo</h3>
+                <p className="mb-6 max-w-md mx-auto">
+                  This container demonstrates how animations can be layered and composed together.
+                </p>
+                <LoadingSpinner size="md" color="purple" thickness="regular" />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
